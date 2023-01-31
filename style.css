@@ -1,7 +1,6 @@
-.table-container{
+.table-container {
     display: flex;
 }
-
 
 th, td {
     padding: 10px;
@@ -9,14 +8,15 @@ th, td {
 }
 
 th {
-    border-bottom: 1px solid black;
+    border-top: 1px solid hsl(0, 0%, 0%);
+    border-bottom: 1px solid hsl(0, 0%, 0%);
 }
 
 td {
-    border-bottom: 0.5px solid gray;
+    border-bottom: 0.5px solid hsl(0, 0%, 50%);
 }
 
-@media (min-width: 1102px){
+@media (min-width: 1102px) {
 .table-container {
     justify-content: center;
     }
