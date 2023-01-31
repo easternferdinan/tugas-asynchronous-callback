@@ -45,11 +45,6 @@ function createTableBody(body) {
     })
 }
 
-function stopLoading() {
-    const loading = document.querySelector(".loading");
-    loading.setAttribute("style", "display: none");
-}
-
 function getUserData(callbackTable, callbackLoading) {
     const userData = new XMLHttpRequest();
     
@@ -65,4 +60,7 @@ function getUserData(callbackTable, callbackLoading) {
     userData.send();
 }
 
-getUserData(createTable, stopLoading);
+getUserData(createTable, () => {
+    const loading = document.querySelector(".loading");
+    loading.setAttribute("style", "display: none");
+});
