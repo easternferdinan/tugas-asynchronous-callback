@@ -21,7 +21,6 @@ function createTableBody(body) {
     const tableBody = document.createElement("tbody");
     document.querySelector("table").appendChild(tableBody);
 
-    console.log(body)
     body.forEach(datum => {
         const tableRow = document.createElement("tr");
         tableBody.appendChild(tableRow);
@@ -46,14 +45,24 @@ function createTableBody(body) {
     })
 }
 
-const userData = new XMLHttpRequest();
-
-userData.onload = function () {
-    if (this.status === 200) {
-        userList = JSON.parse(this.response);
-        createTable(["ID", "Name", "Username", "Email", "Address", "Company"], userList);
-    }
+function stopLoading() {
+    const loading = document.querySelector(".loading");
+    loading.setAttribute("style", "display: none");
 }
 
-userData.open("GET", "https://jsonplaceholder.typicode.com/users");
-userData.send();
+function getUserData(callbackTable, callbackLoading) {
+    const userData = new XMLHttpRequest();
+    
+    userData.onload = function () {
+        if (this.status === 200) {
+            userList = JSON.parse(this.response);
+            callbackLoading();
+            callbackTable(["ID", "Name", "Username", "Email", "Address", "Company"], userList);
+        }
+    }
+    
+    userData.open("GET", "https://jsonplaceholder.typicode.com/users");
+    userData.send();
+}
+
+getUserData(createTable, stopLoading);

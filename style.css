@@ -1,0 +1,23 @@
+.table-container{
+    display: flex;
+}
+
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    border-bottom: 1px solid black;
+}
+
+td {
+    border-bottom: 0.5px solid gray;
+}
+
+@media (min-width: 1102px){
+.table-container {
+    justify-content: center;
+    }
+}
